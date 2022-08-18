@@ -4,17 +4,20 @@ import React, { useState } from 'react';
 
 const ShortCircuit = () => {
   const [text, setText] = useState('');
-  const firstValue = text || 'hello world';
-  const secondValue = text && 'hello world';
-
-  return <>
-    <h1>{firstValue}</h1>
-    <h2>value: {secondValue}</h2>
+  const [isError, setIsError] = useState(false);
+  // const firstValue = text || 'hello world';
+  // const secondValue = text && 'hello world';
 
 
-
-  {/* {if(){console.log('hello world')}} will not work */}
-  </>;
+  return( <>
+    
+    <h1>{text || 'john doe'}</h1>
+    <button className='btn' 
+    onClick={() => setIsError(!isError)}>toggle error</button>
+    {isError && <h1>Error...</h1>}
+    {isError ? <p>there is an error...</p> : <div><h2>there is no error</h2></div>}
+  </>
+  );
 };
 
 export default ShortCircuit;
